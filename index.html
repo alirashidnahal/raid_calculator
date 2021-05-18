@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="assets/bootstrap/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="assets/style.css" rel="stylesheet">
+
+    <title>Hello, world!</title>
+    
+  </head>
+
+  <body>
+      <div class="container">
+          
+        <section class="raid-calculator" id="raid-calculator">
+            <div class="main">
+              <div class="h1 text-center">محاسبه گر Raid فضای دیسک</div>
+              <div class="row g-3 mb-3 align-items-center">
+                <div class="col-auto">
+                    <label for="numberOfDisks">تعداد کل دیسک ها</label>
+                    <input type="number" class="form-control" id="numberOfDisks" value="0">
+                </div>
+                <div class="col-auto">
+                  <span id="passwordHelpInline" class="form-text">
+                    ترابایت
+                  </span>
+                </div>
+                <div class="col-auto">
+                    <label for="sizeOfEachDrive">سایز هر درایو</label>
+                    <input type="number" class="form-control" id="sizeOfEachDrive" value="0">
+                </div>
+                <div class="col-auto">
+                  <span id="passwordHelpInline" class="form-text">
+                    ترابایت
+                  </span>
+                </div>
+              </div>
+                <h4 class="mb-3">نوع پیکربندی Raid خود را انتخاب کنید و یا درباره 
+                  <a href="#raidAccordion" data-et-has-event-already="true"><b>انواع پیکربندی Raid</b></a>
+                  بیشتر بدانید.
+                </h4>
+                <div class="row mb-3">
+                  <div class="raidConfig">
+                    <label class="selected"><input type="radio" name="raidConf" value="0"> Raid 0 <span>Stripe</span></label>
+                    <label><input type="radio" name="raidConf" value="1"> Raid 1 <span>2 درایو</span> </label>
+                    <label><input type="radio" name="raidConf" value="5"> Raid 5 <span>حداقل 3</span> </label>
+                    <label><input type="radio" name="raidConf" value="6"> Raid 6 <span>حداقل 4</span> </label>
+                    <label><input type="radio" name="raidConf" value="10"> Raid 10 <span>حداقل 4</span> </label>
+                    <label><input type="radio" name="raidConf" value="50"> Raid 50 <span>حداقل 6</span> </label>
+                    <label><input type="radio" name="raidConf" value="60"> Raid 60 <span>حداقل 8</span> </label>
+                  </div>
+                </div>
+                  <h4>مجموع فضای قابل استفاده: (
+                  <span class="text">
+                    <span id="availableSpace">0</span> ترابایت از مجموع<span id="totalSpace">0</span> ترابایت )
+                  </span>
+                </h4>
+                <div class="progress" style="height: 40px;">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="availableSpace"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="raid-types">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        RAID 0 (STRIPE)
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <img src="assets/img/Raid0.png" alt="" class="hi">
+                      <div class="row">
+                        <div class="col-md-9">
+                          <p>
+                            RAID 0 داده ها را بر روی درایوها تقسیم می کند ، و در نتیجه باعث می شود که داده ها بیشتر شود. عملکرد این پیکربندی بسیار بالا است ، اما از دست دادن هر درایو در آرایه منجر به از دست دادن اطلاعات می شود. این سطح معمولاً راه راه نامیده می شود.
+                          </p>
+                          <ul>
+                            <li>حداقل تعداد درایو های مورد نیاز: 2</li>
+                            <li>Performance: بالا</li>
+                            <li>Redundancy: پایین</li>
+                            <li>Efficiency: بالا</li>
+                          </ul>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="title">مزایا:</div>
+                          <ul>
+                            <li>کارایی بالا</li>
+                            <li>راه اندازی آسان</li>
+                            <li>بسیار کارآمد (بدون برابری سربار)</li>
+                          </ul>
+                          <div class="title">معایب:</div>
+                          <ul>
+                            <li>No redundancy</li>
+                            <li>Limited business use cases due to no fault tolerance</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        RAID 1 (MIRROR)
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <img src="assets/img/Raid1.png" alt="" class="hi">
+                      <div class="row">
+                        <div class="col-md-9">
+                          <p>
+                            RAID 1 تمام داده ها را برای 100٪ افزونگی در دو یا چند درایو می نویسد: اگر هر دو درایو خراب شود ، هیچ داده ای از بین نمی رود. در مقایسه با یک درایو تک ، این حالت در خواندن سریع تر ، در نوشتن کندتر است. این یک پیکربندی اضافی خوب در سطح ورودی است. با این حال ، از آنجا که کل درایو تکراری است ، هزینه هر مگابایت زیاد است. معمولاً از این به عنوان آینه کاری یاد می شود
+                          </p>
+                          <ul>
+                            <li>حداقل تعداد درایو های مورد نیاز: 2</li>
+                            <li>Performance: میانگین</li>
+                            <li>Redundancy: بالا</li>
+                            <li>Efficiency: پایین</li>
+                          </ul>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="title">مزایا:</div>
+                          <ul>
+                            <li>کارایی بالا</li>
+                            <li>راه اندازی آسان</li>
+                            <li>بسیار کارآمد (بدون برابری سربار)</li>
+                          </ul>
+                          <div class="title">معایب:</div>
+                          <ul>
+                            <li>No redundancy</li>
+                            <li>Limited business use cases due to no fault tolerance</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        RAID 0+1 (STRIPE + MIRROR)
+                    </button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <img src="assets/img/Raid01.png" alt="" class="hi">
+                      <div class="row">
+                        <div class="col-md-9">
+                          <p>
+                            RAID 0 + 1 آرایه ای آینه ای (RAID 1) است که بخشهای آن آرایه های راه راه (RAID 0) است. این پیکربندی ترکیبی از امنیت RAID 1 با افزایش عملکرد اضافی از راه اندازی 0 RAID است.
+                                                    </p>
+                          <ul>
+                            <li>حداقل تعداد درایو های مورد نیاز: 4</li>
+                            <li>Performance: بسیار بالا</li>
+                            <li>Redundancy: بالا</li>
+                            <li>Efficiency: پایین</li>
+                          </ul>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="title">مزایا:</div>
+                          <ul>
+                            <li>کارایی بالا</li>
+                            <li>راه اندازی آسان</li>
+                            <li>بسیار کارآمد (بدون برابری سربار)</li>
+                          </ul>
+                          <div class="title">معایب:</div>
+                          <ul>
+                            <li>No redundancy</li>
+                            <li>Limited business use cases due to no fault tolerance</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        RAID 5 (DRIVES WITH PARITY)
+                      </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <img src="assets/img/Raid5.png" alt="" class="hi">
+                        <div class="row">
+                          <div class="col-md-9">
+                            <p>
+                              داده های نوار RAID 5 در سطح بلوک در چندین درایو ، با برابری برابری بین درایوها توزیع شده است. اطلاعات برابری امکان بازیابی از خرابی هر درایو واحد را فراهم می کند. عملکرد نوشتن نسبتاً سریع است ، اما چون هنگام خواندن باید از داده های برابری در هر درایو صرف نظر شود ، سرعت خواندن کندتر است. نسبت پایین برابری به داده ها به معنای اضافه کار اضافی است.
+                                                        </p>
+                            <ul>
+                              <li>حداقل تعداد درایو های مورد نیاز: 3</li>
+                              <li>Performance: میانگین</li>
+                              <li>Redundancy: بالا</li>
+                              <li>Efficiency: بالا</li>
+                            </ul>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="title">مزایا:</div>
+                            <ul>
+                              <li>کارایی بالا</li>
+                              <li>راه اندازی آسان</li>
+                              <li>بسیار کارآمد (بدون برابری سربار)</li>
+                            </ul>
+                            <div class="title">معایب:</div>
+                            <ul>
+                              <li>No redundancy</li>
+                              <li>Limited business use cases due to no fault tolerance</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        RAID 6 (DRIVES WITH DOUBLE PARITY)
+                      </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <img src="assets/img/Raid6.png" alt="" class="hi">
+                        <div class="row">
+                          <div class="col-md-9">
+                            <p>
+                              RAID 6 یک نسخه ارتقا یافته از RAID 5 است: داده ها در سطح بلوک در چندین درایو با برابری مضاعف بین درایوها پخش می شوند. همانطور که با 5 دارید ، اطلاعات برابری امکان بازیابی در نتیجه خرابی هر درایو را فراهم می کند. برابری مضاعف 6 هزینه اضافی اضافی را با هزینه عملکرد پایین نوشتن (عملکرد خواندن یکسان است) می دهد و هزینه اضافی اضافه کار نیز کم است.
+                                                        </p>
+                            <ul>
+                              <li>حداقل تعداد درایو های مورد نیاز: 4</li>
+                              <li>Performance: میانگین</li>
+                              <li>Redundancy: بالا</li>
+                              <li>Efficiency: بالا</li>
+                            </ul>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="title">مزایا:</div>
+                            <ul>
+                              <li>کارایی بالا</li>
+                              <li>راه اندازی آسان</li>
+                              <li>بسیار کارآمد (بدون برابری سربار)</li>
+                            </ul>
+                            <div class="title">معایب:</div>
+                            <ul>
+                              <li>No redundancy</li>
+                              <li>Limited business use cases due to no fault tolerance</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingSix">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        RAID 10 (MIRROR + STRIPE)
+                      </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <img src="assets/img/Raid10.png" alt="" class="hi">
+                        <div class="row">
+                          <div class="col-md-9">
+                            <p>
+                              RAID 10 یک آرایه راه راه (RAID 0) است که بخشهای آن آینه شده است (RAID 1). این حالت یک پیکربندی محبوب برای محیط هایی است که به عملکرد بالا و امنیت نیاز دارند. از نظر عملکرد شبیه RAID 0 + 1 است. با این حال ، از مقاومت بالایی در برابر خطا و عملکرد بازسازی برخوردار است.
+                                                        </p>
+                            <ul>
+                              <li>حداقل تعداد درایو های مورد نیاز: 4</li>
+                              <li>Performance: بسیار بالا</li>
+                              <li>Redundancy: بسیار بالا</li>
+                              <li>Efficiency: پایین</li>
+                            </ul>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="title">مزایا:</div>
+                            <ul>
+                              <li>کارایی بالا</li>
+                              <li>راه اندازی آسان</li>
+                              <li>بسیار کارآمد (بدون برابری سربار)</li>
+                            </ul>
+                            <div class="title">معایب:</div>
+                            <ul>
+                              <li>No redundancy</li>
+                              <li>Limited business use cases due to no fault tolerance</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingSeven">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        RAID 50 (PARITY + STRIPE)
+                      </button>
+                    </h2>
+                    <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <img src="assets/img/Raid50.png" alt="" class="hi">
+                        <div class="row">
+                          <div class="col-md-9">
+                            <p>
+                              RAID 50 ترکیبی از RAID 5 است و آن را مانند پیکربندی RAID 0 خط می زند. اگرچه از نظر هزینه و پیچیدگی زیاد ، عملکرد و تحمل خطا نسبت به RAID 5 برتر است.
+                                                        </p>
+                            <ul>
+                              <li>حداقل تعداد درایو های مورد نیاز: 6</li>
+                              <li>Performance: بالا</li>
+                              <li>Redundancy: بالا</li>
+                              <li>Efficiency: میانگین</li>
+                            </ul>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="title">مزایا:</div>
+                            <ul>
+                              <li>کارایی بالا</li>
+                              <li>راه اندازی آسان</li>
+                              <li>بسیار کارآمد (بدون برابری سربار)</li>
+                            </ul>
+                            <div class="title">معایب:</div>
+                            <ul>
+                              <li>No redundancy</li>
+                              <li>Limited business use cases due to no fault tolerance</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingEight">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                        RAID 60 (DOUBLE PARITY + STRIPE)
+                      </button>
+                    </h2>
+                    <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <img src="assets/img/Raid60.png" alt="" class="hi">
+                        <div class="row">
+                          <div class="col-md-9">
+                            <p>
+                              RAID 60 RAID 6 را با دو برابری ترکیب می کند و آن را مانند پیکربندی RAID 0 خط می زند. گرچه از نظر هزینه و پیچیدگی زیاد ، عملکرد و تحمل خطا نسبت به RAID 6 برتر است.
+                                                        </p>
+                            <ul>
+                              <li>حداقل تعداد درایو های مورد نیاز: 2</li>
+                              <li>Performance: بالا</li>
+                              <li>Redundancy: بالا</li>
+                              <li>Efficiency: میانگین</li>
+                            </ul>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="title">مزایا:</div>
+                            <ul>
+                              <li>کارایی بالا</li>
+                              <li>راه اندازی آسان</li>
+                              <li>بسیار کارآمد (بدون برابری سربار)</li>
+                            </ul>
+                            <div class="title">معایب:</div>
+                            <ul>
+                              <li>No redundancy</li>
+                              <li>Limited business use cases due to no fault tolerance</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+        </section>
+      </div>
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/main.js"></script>
+  </body>
+</html>
