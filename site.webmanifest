@@ -1,6 +1,6 @@
 {
-  "short_name": "",
-  "name": "",
+  "short_name": "Raid Calculator",
+  "name": "Raid Calculator",
   "icons": [{
     "src": "icon.png",
     "type": "image/png",
