@@ -5,16 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
-    <link href="assets/bootstrap/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="node_modules/bootstrap/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
     <link href="assets/style.css" rel="stylesheet">
 
-    <title>Hello, world!</title>
-    
+    <title>محاسبه گر Raid فضای دیسک</title>
+
   </head>
 
   <body>
       <div class="container">
-          
+
         <section class="raid-calculator" id="raid-calculator">
             <div class="main">
               <div class="h1 text-center">محاسبه گر Raid فضای دیسک</div>
@@ -24,8 +24,8 @@
                     <input type="number" class="form-control" id="numberOfDisks" value="0">
                 </div>
                 <div class="col-auto">
-                  <span id="passwordHelpInline" class="form-text">
-                    ترابایت
+                  <span class="form-text">
+                    عدد
                   </span>
                 </div>
                 <div class="col-auto">
@@ -33,12 +33,12 @@
                     <input type="number" class="form-control" id="sizeOfEachDrive" value="0">
                 </div>
                 <div class="col-auto">
-                  <span id="passwordHelpInline" class="form-text">
+                  <span class="form-text">
                     ترابایت
                   </span>
                 </div>
               </div>
-                <h4 class="mb-3">نوع پیکربندی Raid خود را انتخاب کنید و یا درباره 
+                <h4 class="mb-3">نوع پیکربندی Raid خود را انتخاب کنید و یا درباره
                   <a href="#raidAccordion" data-et-has-event-already="true"><b>انواع پیکربندی Raid</b></a>
                   بیشتر بدانید.
                 </h4>
@@ -53,51 +53,49 @@
                     <label><input type="radio" name="raidConf" value="60"> Raid 60 <span>حداقل 8</span> </label>
                   </div>
                 </div>
-                  <h4>مجموع فضای قابل استفاده: (
+                  <h4>مجموع فضای قابل استفاده:
                   <span class="text">
-                    <span id="availableSpace">0</span> ترابایت از مجموع<span id="totalSpace">0</span> ترابایت )
+                    (<span id="availableSpace">0</span> ترابایت از مجموع <span id="totalSpace">0</span> ترابایت)
                   </span>
                 </h4>
                 <div class="progress" style="height: 40px;">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="availableSpace"></div>
+                  <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
         </section>
 
         <section class="raid-types">
-            <div class="accordion" id="accordionExample">
+            <div class="accordion" id="raidAccordion">
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingOne">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         RAID 0 (STRIPE)
                     </button>
                   </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#raidAccordion">
                     <div class="accordion-body">
                       <img src="assets/img/Raid0.png" alt="" class="hi">
                       <div class="row">
-                        <div class="col-md-9">
-                          <p>
-                            RAID 0 داده ها را بر روی درایوها تقسیم می کند ، و در نتیجه باعث می شود که داده ها بیشتر شود. عملکرد این پیکربندی بسیار بالا است ، اما از دست دادن هر درایو در آرایه منجر به از دست دادن اطلاعات می شود. این سطح معمولاً راه راه نامیده می شود.
-                          </p>
+                        <div class="col-md-8">
+                          <p>RAID 0 داده‌ها را بین درایوها تقسیم می‌کند و در نتیجه توان عملیاتی داده بالاتری را ارائه می‌دهد. کارایی این پیکربندی بسیار بالا است، اما از دست دادن هر درایو در آرایه منجر به از دست رفتن داده‌ها می‌شود. این سطح معمولاً به عنوان راه‌راه (Striping) شناخته می‌شود.</p>
                           <ul>
                             <li>حداقل تعداد درایو های مورد نیاز: 2</li>
-                            <li>Performance: بالا</li>
-                            <li>Redundancy: پایین</li>
-                            <li>Efficiency: بالا</li>
+                            <li>کارایی: بالا</li>
+                            <li>افزونگی: پایین</li>
+                            <li>راندمان: بالا</li>
                           </ul>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                           <div class="title">مزایا:</div>
                           <ul>
                             <li>کارایی بالا</li>
-                            <li>راه اندازی آسان</li>
-                            <li>بسیار کارآمد (بدون برابری سربار)</li>
+                            <li>اجرا و پیاده‌سازی آسان</li>
+                            <li>بسیار کارآمد (بدون سربار برابری)</li>
                           </ul>
                           <div class="title">معایب:</div>
                           <ul>
-                            <li>No redundancy</li>
-                            <li>Limited business use cases due to no fault tolerance</li>
+                            <li>بدون افزونگی</li>
+                            <li>موارد استفاده تجاری محدود به دلیل عدم وجود تحمل خطا (fault tolerance)</li>
                           </ul>
                         </div>
                       </div>
@@ -110,32 +108,31 @@
                         RAID 1 (MIRROR)
                     </button>
                   </h2>
-                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#raidAccordion">
                     <div class="accordion-body">
                       <img src="assets/img/Raid1.png" alt="" class="hi">
                       <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                           <p>
-                            RAID 1 تمام داده ها را برای 100٪ افزونگی در دو یا چند درایو می نویسد: اگر هر دو درایو خراب شود ، هیچ داده ای از بین نمی رود. در مقایسه با یک درایو تک ، این حالت در خواندن سریع تر ، در نوشتن کندتر است. این یک پیکربندی اضافی خوب در سطح ورودی است. با این حال ، از آنجا که کل درایو تکراری است ، هزینه هر مگابایت زیاد است. معمولاً از این به عنوان آینه کاری یاد می شود
-                          </p>
+                            RAID 1 تمام داده‌ها را برای افزونگی ۱۰۰٪ روی دو یا چند درایو می‌نویسد: اگر هر یک از درایوها از کار بیفتد، هیچ داده‌ای از بین نمی‌رود. در مقایسه با یک درایو واحد، این حالت در خواندن سریع‌تر و در نوشتن کندتر است. این یک پیکربندی افزونگی سطح ورودی خوب است. با این حال، از آنجایی که کل یک درایو تکراری است، هزینه هر مگابایت بالا است. این معمولاً به عنوان آینه‌سازی (Mirroring) شناخته می‌شود.                          </p>
                           <ul>
-                            <li>حداقل تعداد درایو های مورد نیاز: 2</li>
-                            <li>Performance: میانگین</li>
-                            <li>Redundancy: بالا</li>
-                            <li>Efficiency: پایین</li>
+                            <li>حداقل تعداد درایوهای مورد نیاز: 2</li>
+                            <li>کارایی: میانگین</li>
+                            <li>افزونگی: بالا</li>
+                            <li>راندمان: پایین</li>
                           </ul>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                           <div class="title">مزایا:</div>
                           <ul>
-                            <li>کارایی بالا</li>
-                            <li>راه اندازی آسان</li>
-                            <li>بسیار کارآمد (بدون برابری سربار)</li>
+                            <li>تحمل پذیر در برابر خطا</li>
+                            <li>بازیابی آسان اطلاعات در صورت خرابی هارد دیسک</li>
+                            <li>اجرا و پیاده‌سازی آسان</li>
                           </ul>
                           <div class="title">معایب:</div>
                           <ul>
-                            <li>No redundancy</li>
-                            <li>Limited business use cases due to no fault tolerance</li>
+                            <li>بسیار ناکارآمد (سربار ۱۰۰٪ پریتی)</li>
+                            <li>مقیاس‌پذیر نیست (با افزایش تعداد دیسک‌ها بسیار پرهزینه می‌شود)</li>
                           </ul>
                         </div>
                       </div>
@@ -148,32 +145,30 @@
                         RAID 0+1 (STRIPE + MIRROR)
                     </button>
                   </h2>
-                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#raidAccordion">
                     <div class="accordion-body">
                       <img src="assets/img/Raid01.png" alt="" class="hi">
                       <div class="row">
-                        <div class="col-md-9">
-                          <p>
-                            RAID 0 + 1 آرایه ای آینه ای (RAID 1) است که بخشهای آن آرایه های راه راه (RAID 0) است. این پیکربندی ترکیبی از امنیت RAID 1 با افزایش عملکرد اضافی از راه اندازی 0 RAID است.
-                                                    </p>
+                        <div class="col-md-8">
+                          <p>RAID 0+1 یک آرایه آینه‌ای (RAID 1) است که بخش‌های آن آرایه‌های راه راه (RAID 0) هستند. این پیکربندی امنیت RAID 1 را با افزایش کارایی اضافی ناشی از راه راه RAID 0 ترکیب می‌کند.</p>
                           <ul>
-                            <li>حداقل تعداد درایو های مورد نیاز: 4</li>
-                            <li>Performance: بسیار بالا</li>
-                            <li>Redundancy: بالا</li>
-                            <li>Efficiency: پایین</li>
+                            <li>حداقل تعداد درایوهای مورد نیاز: 4</li>
+                            <li>کارایی: بسیار بالا</li>
+                            <li>افزونگی: بالا</li>
+                            <li>راندمان: پایین</li>
                           </ul>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                           <div class="title">مزایا:</div>
                           <ul>
-                            <li>کارایی بالا</li>
-                            <li>راه اندازی آسان</li>
-                            <li>بسیار کارآمد (بدون برابری سربار)</li>
+                            <li>تحمل پذیر در برابر خطا</li>
+                            <li>راندمان بسیار بالا</li>
                           </ul>
                           <div class="title">معایب:</div>
                           <ul>
-                            <li>No redundancy</li>
-                            <li>Limited business use cases due to no fault tolerance</li>
+                            <li>اجرای بسیار گران و پرهزینه</li>
+                            <li>سربار بالا</li>
+                            <li>مقیاس‌پذیری بسیار محدود</li>
                           </ul>
                         </div>
                       </div>
@@ -186,32 +181,29 @@
                         RAID 5 (DRIVES WITH PARITY)
                       </button>
                     </h2>
-                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#raidAccordion">
                       <div class="accordion-body">
                         <img src="assets/img/Raid5.png" alt="" class="hi">
                         <div class="row">
-                          <div class="col-md-9">
-                            <p>
-                              داده های نوار RAID 5 در سطح بلوک در چندین درایو ، با برابری برابری بین درایوها توزیع شده است. اطلاعات برابری امکان بازیابی از خرابی هر درایو واحد را فراهم می کند. عملکرد نوشتن نسبتاً سریع است ، اما چون هنگام خواندن باید از داده های برابری در هر درایو صرف نظر شود ، سرعت خواندن کندتر است. نسبت پایین برابری به داده ها به معنای اضافه کار اضافی است.
-                                                        </p>
+                          <div class="col-md-8">
+                            <p>RAID 5 داده‌ها را در سطح بلوکی بین چندین درایو تقسیم می‌کند و برابری توازن بین درایوها توزیع می‌شود. اطلاعات توازن امکان بازیابی از خرابی هر درایو را فراهم می‌کند. کارایی نوشتن نسبتاً سریع است، اما از آنجا که داده‌های توازن باید در طول خواندن روی هر درایو نادیده گرفته شوند، خواندن کندتر است. نسبت پایین توازن به داده‌ها به معنای سربار افزونگی کم است.</p>
                             <ul>
                               <li>حداقل تعداد درایو های مورد نیاز: 3</li>
-                              <li>Performance: میانگین</li>
-                              <li>Redundancy: بالا</li>
-                              <li>Efficiency: بالا</li>
+                              <li>کارایی: میانگین</li>
+                              <li>افزونگی: بالا</li>
+                              <li>راندمان: بالا</li>
                             </ul>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <div class="title">مزایا:</div>
                             <ul>
-                              <li>کارایی بالا</li>
-                              <li>راه اندازی آسان</li>
-                              <li>بسیار کارآمد (بدون برابری سربار)</li>
+                              <li>تحمل پذیر در برابر خطا</li>
+                              <li>راندمان بسیار بالا</li>
                             </ul>
                             <div class="title">معایب:</div>
                             <ul>
-                              <li>No redundancy</li>
-                              <li>Limited business use cases due to no fault tolerance</li>
+                              <li>خرابی دیسک تأثیر متوسطی بر توان عملیاتی دارد</li>
+                              <li>طراحی کنترلر پیچیده است</li>
                             </ul>
                           </div>
                         </div>
@@ -224,32 +216,32 @@
                         RAID 6 (DRIVES WITH DOUBLE PARITY)
                       </button>
                     </h2>
-                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#raidAccordion">
                       <div class="accordion-body">
                         <img src="assets/img/Raid6.png" alt="" class="hi">
                         <div class="row">
-                          <div class="col-md-9">
-                            <p>
-                              RAID 6 یک نسخه ارتقا یافته از RAID 5 است: داده ها در سطح بلوک در چندین درایو با برابری مضاعف بین درایوها پخش می شوند. همانطور که با 5 دارید ، اطلاعات برابری امکان بازیابی در نتیجه خرابی هر درایو را فراهم می کند. برابری مضاعف 6 هزینه اضافی اضافی را با هزینه عملکرد پایین نوشتن (عملکرد خواندن یکسان است) می دهد و هزینه اضافی اضافه کار نیز کم است.
-                                                        </p>
+                          <div class="col-md-8">
+                            <p>RAID 6 یک نسخه ارتقا یافته از RAID 5 است: داده‌ها در سطح بلوکی در چندین درایو با دو برابر توازن (double parity) که بین درایوها توزیع شده است، پخش می‌شوند. اطلاعات توازن امکان بازیابی از خرابی هر درایو را فراهم می‌کند. توازن دوگانه به این حالت RAID افزونگی بیشتری می‌دهد، اما به قیمت کارایی نوشتن پایین‌تر (کارایی خواندن یکسان است) و سربار افزونگی همچنان پایین است.</p>
                             <ul>
                               <li>حداقل تعداد درایو های مورد نیاز: 4</li>
-                              <li>Performance: میانگین</li>
-                              <li>Redundancy: بالا</li>
-                              <li>Efficiency: بالا</li>
+                              <li>کارایی: میانگین</li>
+                              <li>افزونگی: بالا</li>
+                              <li>راندمان: بالا</li>
                             </ul>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <div class="title">مزایا:</div>
                             <ul>
-                              <li>کارایی بالا</li>
-                              <li>راه اندازی آسان</li>
-                              <li>بسیار کارآمد (بدون برابری سربار)</li>
+                              <li>تحمل‌پذیری خطا با افزونگی افزایش‌یافته.</li>
+                              <li>راندمان بالا</li>
+                              <li>همچنان یک گزینه عالی در محیط‌های چندکاربره است که به کارایی نوشتن حساس نیستند.</li>
                             </ul>
                             <div class="title">معایب:</div>
                             <ul>
-                              <li>No redundancy</li>
-                              <li>Limited business use cases due to no fault tolerance</li>
+                              <li>کاهش کارایی نوشتن در مقابل RAID 5</li>
+                              <li>راه‌اندازی گران‌تر از RAID 5</li>
+                              <li>خرابی دیسک تأثیر متوسطی بر توان عملیاتی دارد</li>
+                              <li>طراحی کنترلر پیچیده است</li>
                             </ul>
                           </div>
                         </div>
@@ -262,32 +254,31 @@
                         RAID 10 (MIRROR + STRIPE)
                       </button>
                     </h2>
-                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#raidAccordion">
                       <div class="accordion-body">
                         <img src="assets/img/Raid10.png" alt="" class="hi">
                         <div class="row">
-                          <div class="col-md-9">
-                            <p>
-                              RAID 10 یک آرایه راه راه (RAID 0) است که بخشهای آن آینه شده است (RAID 1). این حالت یک پیکربندی محبوب برای محیط هایی است که به عملکرد بالا و امنیت نیاز دارند. از نظر عملکرد شبیه RAID 0 + 1 است. با این حال ، از مقاومت بالایی در برابر خطا و عملکرد بازسازی برخوردار است.
-                                                        </p>
+                          <div class="col-md-8">
+                            <p>RAID 10 یک آرایه راه راه (RAID 0) است که بخش‌های آن آینه‌ای (RAID 1) هستند. این حالت یک پیکربندی محبوب برای محیط‌هایی است که در آن‌ها به کارایی و امنیت بالا نیاز است. از نظر کارایی، مشابه RAID 0+1 است. با این حال، تحمل خطای بالاتری دارد و کارایی را بازسازی می‌کند.</p>
                             <ul>
                               <li>حداقل تعداد درایو های مورد نیاز: 4</li>
-                              <li>Performance: بسیار بالا</li>
-                              <li>Redundancy: بسیار بالا</li>
-                              <li>Efficiency: پایین</li>
+                              <li>کارایی: بسیار بالا</li>
+                              <li>افزونگی: بسیار بالا</li>
+                              <li>راندمان: پایین</li>
                             </ul>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <div class="title">مزایا:</div>
                             <ul>
-                              <li>کارایی بالا</li>
-                              <li>راه اندازی آسان</li>
-                              <li>بسیار کارآمد (بدون برابری سربار)</li>
+                              <li>تحمل خطای بسیار بالا (تحت شرایط خاص، آرایه RAID 10 می‌تواند چندین خرابی همزمان درایو را تحمل کند)</li>
+                              <li>کارایی بسیار بالا</li>
+                              <li>کارایی بازسازی سریع‌تر از 0+1</li>
                             </ul>
                             <div class="title">معایب:</div>
                             <ul>
-                              <li>No redundancy</li>
-                              <li>Limited business use cases due to no fault tolerance</li>
+                              <li>راه‌اندازی گران</li>
+                              <li>سربار بالا</li>
+                              <li>مقیاس‌پذیری محدود</li>
                             </ul>
                           </div>
                         </div>
@@ -300,32 +291,29 @@
                         RAID 50 (PARITY + STRIPE)
                       </button>
                     </h2>
-                    <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+                    <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#raidAccordion">
                       <div class="accordion-body">
                         <img src="assets/img/Raid50.png" alt="" class="hi">
                         <div class="row">
-                          <div class="col-md-9">
-                            <p>
-                              RAID 50 ترکیبی از RAID 5 است و آن را مانند پیکربندی RAID 0 خط می زند. اگرچه از نظر هزینه و پیچیدگی زیاد ، عملکرد و تحمل خطا نسبت به RAID 5 برتر است.
-                                                        </p>
+                          <div class="col-md-8">
+                            <p>RAID 50 توازن RAID 5 را ترکیب می‌کند و آن را مانند پیکربندی RAID 0 نواربندی می‌کند. اگرچه از نظر هزینه و پیچیدگی بالا است، اما کارایی و تحمل خطا نسبت به ۵ برتر است.</p>
                             <ul>
                               <li>حداقل تعداد درایو های مورد نیاز: 6</li>
-                              <li>Performance: بالا</li>
-                              <li>Redundancy: بالا</li>
-                              <li>Efficiency: میانگین</li>
+                              <li>کارایی: بالا</li>
+                              <li>افزونگی: بالا</li>
+                              <li>راندمان: میانگین</li>
                             </ul>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <div class="title">مزایا:</div>
                             <ul>
-                              <li>کارایی بالا</li>
-                              <li>راه اندازی آسان</li>
-                              <li>بسیار کارآمد (بدون برابری سربار)</li>
+                              <li>تحمل خطای بالاتر، کارایی بهتر و راندمان بالاتر نسبت به RAID 5</li>
                             </ul>
                             <div class="title">معایب:</div>
                             <ul>
-                              <li>No redundancy</li>
-                              <li>Limited business use cases due to no fault tolerance</li>
+                              <li>راه‌اندازی گران</li>
+                              <li>سربار بالا</li>
+                              <li>مقیاس‌پذیری محدود</li>
                             </ul>
                           </div>
                         </div>
@@ -338,32 +326,30 @@
                         RAID 60 (DOUBLE PARITY + STRIPE)
                       </button>
                     </h2>
-                    <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+                    <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#raidAccordion">
                       <div class="accordion-body">
                         <img src="assets/img/Raid60.png" alt="" class="hi">
                         <div class="row">
-                          <div class="col-md-9">
-                            <p>
-                              RAID 60 RAID 6 را با دو برابری ترکیب می کند و آن را مانند پیکربندی RAID 0 خط می زند. گرچه از نظر هزینه و پیچیدگی زیاد ، عملکرد و تحمل خطا نسبت به RAID 6 برتر است.
-                                                        </p>
+                          <div class="col-md-8">
+                            <p>RAID 60 دو توازن RAID 6 را ترکیب می‌کند و آن را مانند پیکربندی RAID 0 نواربندی می‌کند. اگرچه از نظر هزینه و پیچیدگی بالا است، اما کارایی و تحمل خطا نسبت به RAID 6 برتری دارد.</p>
                             <ul>
                               <li>حداقل تعداد درایو های مورد نیاز: 2</li>
-                              <li>Performance: بالا</li>
-                              <li>Redundancy: بالا</li>
-                              <li>Efficiency: میانگین</li>
+                              <li>کارایی: بالا</li>
+                              <li>افزونگی: بالا</li>
+                              <li>راندمان: میانگین</li>
                             </ul>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                             <div class="title">مزایا:</div>
                             <ul>
-                              <li>کارایی بالا</li>
-                              <li>راه اندازی آسان</li>
-                              <li>بسیار کارآمد (بدون برابری سربار)</li>
+                              <li>تحمل خطای بالاتر نسبت به RAID 6</li>
+                              <li>کارایی بالاتر نسبت به RAID 6</li>
+                              <li>راندمان بالاتر نسبت به RAID 6</li>
                             </ul>
                             <div class="title">معایب:</div>
                             <ul>
-                              <li>No redundancy</li>
-                              <li>Limited business use cases due to no fault tolerance</li>
+                              <li>راه‌اندازی گران</li>
+                              <li>پیاده‌سازی بسیار پیچیده/دشوار</li>
                             </ul>
                           </div>
                         </div>
@@ -373,7 +359,7 @@
               </div>
         </section>
       </div>
-    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/main.js"></script>
   </body>
 </html>
