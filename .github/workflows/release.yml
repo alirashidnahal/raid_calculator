@@ -1,0 +1,78 @@
+name: Publish
+
+permissions:
+  contents: write
+  actions: read
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
+
+      - name: Get Commit Messages
+        id: get_commits
+        run: |
+          COMMIT_MESSAGES=$(git log --pretty=format:"- %s" $(git describe --tags --abbrev=0 2>/dev/null || git rev-list --max-parents=0 HEAD)..HEAD)
+          echo "COMMIT_MESSAGES<<EOF" >> $GITHUB_ENV
+          echo "$COMMIT_MESSAGES" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Get Next Version
+        id: get_version
+        run: |
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.0.0")
+          VERSION=${LATEST_TAG#v}
+          IFS='.' read -r major minor patch <<< "$VERSION"
+          NEW_PATCH=$((patch + 1))
+          NEW_VERSION="v$major.$minor.$NEW_PATCH"
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+          echo "ZIP_NAME=release-$NEW_VERSION.zip" >> $GITHUB_ENV
+
+      - name: Prepare Release Message
+        id: prepare_release_message
+        run: |
+          awk -v new_ver="$NEW_VERSION" -v changes="$COMMIT_MESSAGES" '{gsub(/RELEASE_TAG/, new_ver); gsub(/CHANGE_LOG/, changes);print}' ./.github/release_message.md > release.md
+        env:
+          NEW_VERSION: ${{ env.NEW_VERSION }}
+          COMMIT_MESSAGES: ${{ env.COMMIT_MESSAGES }}
+
+      - name: Create Tag
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git tag -a ${{ env.NEW_VERSION }} -m "Release ${{ env.NEW_VERSION }}"
+          git push origin ${{ env.NEW_VERSION }}
+
+      - name: Create ZIP file
+        run: |
+          mkdir -p release
+          cp -r assets release/
+          cp favicon.ico release/
+          cp icon.png release/
+          cp icon.svg release/
+          cp index.html release/
+          cp LICENSE release/
+          cp robots.txt release/
+          cp site.webmanifest release/
+          cd release
+          zip -r ../${{ env.ZIP_NAME }} *
+          cd ..
+
+      - name: Publish
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.NEW_VERSION }}
+          files: ${{ env.ZIP_NAME }}
+          body_path: './release.md'
+          draft: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
