@@ -1,5 +1,5 @@
 @charset "utf-8";
-@import "../node_modules/vazirmatn/Vazirmatn-font-face.css";
+@import "vendor/vazirmatn/Vazirmatn-font-face.css";
 
 * {
     font-family: Vazirmatn, serif;
