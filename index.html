@@ -4,7 +4,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>محاسبه گر Raid فضای دیسک</title>
+  <title>محاسبه‌گر RAID فضای دیسک</title>
   <!-- Bootstrap CSS -->
   <link href="assets/vendor/bootstrap/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
   <link href="assets/style.css" rel="stylesheet">
@@ -25,7 +25,7 @@
 
   <section class="raid-calculator" id="raid-calculator">
     <div class="main">
-      <div class="h1 text-center">محاسبه گر Raid فضای دیسک</div>
+      <div class="h1 text-center">محاسبه‌گر RAID فضای دیسک</div>
       <div class="row g-3 mb-3 align-items-center">
         <div class="col-auto">
           <label for="numberOfDisks">تعداد کل دیسک ها</label>
@@ -46,19 +46,19 @@
                   </span>
         </div>
       </div>
-      <h4 class="mb-3">نوع پیکربندی Raid خود را انتخاب کنید و یا درباره
-        <a href="#raidAccordion" data-et-has-event-already="true"><b>انواع پیکربندی Raid</b></a>
+      <h4 class="mb-3">نوع پیکربندی RAID خود را انتخاب کنید و یا درباره
+        <a href="#whatIsRaid" data-et-has-event-already="true"><b>انواع پیکربندی RAID</b></a>
         بیشتر بدانید.
       </h4>
       <div class="row mb-3">
         <div class="raidConfig">
-          <label class="selected"><input type="radio" name="raidConf" value="0"> Raid 0 <span>Stripe</span></label>
-          <label><input type="radio" name="raidConf" value="1"> Raid 1 <span>2 درایو</span> </label>
-          <label><input type="radio" name="raidConf" value="5"> Raid 5 <span>حداقل 3</span> </label>
-          <label><input type="radio" name="raidConf" value="6"> Raid 6 <span>حداقل 4</span> </label>
-          <label><input type="radio" name="raidConf" value="10"> Raid 10 <span>حداقل 4</span> </label>
-          <label><input type="radio" name="raidConf" value="50"> Raid 50 <span>حداقل 6</span> </label>
-          <label><input type="radio" name="raidConf" value="60"> Raid 60 <span>حداقل 8</span> </label>
+          <label class="selected"><input type="radio" name="raidConf" value="0"> RAID 0 <span>Stripe</span> </label>
+          <label class="my-1"><input type="radio" name="raidConf" value="1"> RAID 1 <span>2 درایو</span> </label>
+          <label class="my-1"><input type="radio" name="raidConf" value="5"> RAID 5 <span>حداقل 3</span> </label>
+          <label class="my-1"><input type="radio" name="raidConf" value="6"> RAID 6 <span>حداقل 4</span> </label>
+          <label class="my-1"><input type="radio" name="raidConf" value="10"> RAID 10 <span>حداقل 4</span> </label>
+          <label class="my-1"><input type="radio" name="raidConf" value="50"> RAID 50 <span>حداقل 6</span> </label>
+          <label class="my-1"><input type="radio" name="raidConf" value="60"> RAID 60 <span>حداقل 8</span> </label>
         </div>
       </div>
       <h4>مجموع فضای قابل استفاده:
@@ -72,7 +72,7 @@
     </div>
   </section>
 
-  <section class="raid-types">
+  <section class="raid-types" id="whatIsRaid">
     <div class="content">
       <h2>تکنولوژی RAID چیست؟</h2>
       <p>RAID مخفف عبارت Redundant Array of Independent Disks به معنای آرایه اضافی از دیسک‌های مستقل است که شیوه‌ای جدید
@@ -411,9 +411,9 @@
 </div>
 
 <div class="container">
-  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
 
-    <ul class="nav">
+    <ul class="nav justify-content-between">
       <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Features</a></li>
       <li class="nav-item"><a href="https://alirashidnahal.com/donate" target="_blank" title="حمایت مالی | Support / Donate | آکادمی علی رشیدنهال" class="nav-link px-2 text-white">Donate</a></li>
       <li class="nav-item"><a href="https://github.com/alirashidnahal/raid_calculator/issues" target="_blank" title="Issues · alirashidnahal/raid_calculator" class="nav-link px-2 text-white">Issues</a></li>
