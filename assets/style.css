@@ -7,7 +7,7 @@
 }
 
 body {
-    padding: 30px;
+    padding-top: 30px;
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
     -webkit-animation: gradient 15s ease infinite;
@@ -56,7 +56,7 @@ section {
 .raidConfig {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    flex-wrap: wrap;
 }
 
 .raidConfig label {
