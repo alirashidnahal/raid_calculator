@@ -1,0 +1,13 @@
+# Ignore artifacts and build folders
+build/
+dist/
+coverage/
+node_modules/
+
+# Ignored files
+.cursor/
+.github/
+.qodo/
+*.json
+
+*.min.css
