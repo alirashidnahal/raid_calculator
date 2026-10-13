@@ -1,4 +1,7 @@
-'use strict';
+import 'vazirmatn/Vazirmatn-font-face.css';
+import 'bootstrap/dist/css/bootstrap.rtl.min.css';
+import 'bootstrap';
+import './style.css';
 
 let raidCalc = document.getElementById('raid-calculator');
 
