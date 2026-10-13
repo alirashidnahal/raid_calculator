@@ -3,11 +3,12 @@
   "version": "1.0.11",
   "description": "This is the simple Raid disk space calculator",
   "private": true,
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve --open --config webpack.config.dev.js",
-    "build": "webpack --config webpack.config.prod.js"
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -21,23 +22,16 @@
   ],
   "author": "Ali Rashidnahal",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/alirashidnahal/raid_calculator/issues"
   },
   "homepage": "https://github.com/alirashidnahal/raid_calculator#readme",
   "devDependencies": {
-    "copy-webpack-plugin": "^14.0.0",
-    "html-webpack-plugin": "^5.6.7",
-    "node-forge": "^1.4.0",
-    "webpack": "^5.106.2",
-    "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.3",
-    "webpack-merge": "^6.0.1"
+    "vite": "^6.3.5"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
-    "node-forge": "^1.4.0",
     "vazirmatn": "^33.0.3"
   }
 }
