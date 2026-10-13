@@ -1,19 +1,27 @@
 name: Publish
 
-permissions:
-  contents: write
-  actions: read
-
 on:
   push:
     branches:
       - master
 
+concurrency:
+  group: publish-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      new_version: ${{ steps.meta.outputs.new_version }}
+      zip_name: ${{ steps.meta.outputs.zip_name }}
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
@@ -30,54 +38,95 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Get Commit Messages
-        id: get_commits
+      - name: Resolve version and changelog
+        id: meta
         run: |
-          COMMIT_MESSAGES=$(git log --pretty=format:"- %s" $(git describe --tags --abbrev=0 2>/dev/null || git rev-list --max-parents=0 HEAD)..HEAD)
-          echo "COMMIT_MESSAGES<<EOF" >> $GITHUB_ENV
-          echo "$COMMIT_MESSAGES" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          PKG_VERSION=$(node -p "JSON.parse(require('fs').readFileSync('./package.json','utf8')).version")
+          NEW_VERSION="v${PKG_VERSION}"
+          ZIP_NAME="release-${NEW_VERSION}.zip"
 
-      - name: Get Next Version
-        id: get_version
+          {
+            echo "new_version=${NEW_VERSION}"
+            echo "zip_name=${ZIP_NAME}"
+          } >> "$GITHUB_OUTPUT"
+
+          PREV_TAG=$(git describe --tags --abbrev=0 2>/dev/null || true)
+          if [ -n "$PREV_TAG" ] && [ "$PREV_TAG" != "$NEW_VERSION" ]; then
+            RANGE="${PREV_TAG}..HEAD"
+          else
+            RANGE="$(git rev-list --max-parents=0 HEAD)..HEAD"
+          fi
+
+          {
+            echo "COMMIT_MESSAGES<<EOF"
+            git log --pretty=format:'- %s' "$RANGE"
+            echo ""
+            echo "EOF"
+          } >> "$GITHUB_ENV"
+
+          echo "NEW_VERSION=${NEW_VERSION}" >> "$GITHUB_ENV"
+
+      - name: Prepare release notes
         run: |
-          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.0.0")
-          VERSION=${LATEST_TAG#v}
-          IFS='.' read -r major minor patch <<< "$VERSION"
-          NEW_PATCH=$((patch + 1))
-          NEW_VERSION="v$major.$minor.$NEW_PATCH"
-          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
-          echo "ZIP_NAME=release-$NEW_VERSION.zip" >> $GITHUB_ENV
+          awk -v new_ver="$NEW_VERSION" -v changes="$COMMIT_MESSAGES" \
+            '{gsub(/RELEASE_TAG/, new_ver); gsub(/CHANGE_LOG/, changes); print}' \
+            .github/release_message.md > release.md
 
-      - name: Prepare Release Message
-        id: prepare_release_message
-        run: |
-          awk -v new_ver="$NEW_VERSION" -v changes="$COMMIT_MESSAGES" '{gsub(/RELEASE_TAG/, new_ver); gsub(/CHANGE_LOG/, changes);print}' ./.github/release_message.md > release.md
-        env:
-          NEW_VERSION: ${{ env.NEW_VERSION }}
-          COMMIT_MESSAGES: ${{ env.COMMIT_MESSAGES }}
-
-      - name: Create Tag
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git tag -a ${{ env.NEW_VERSION }} -m "Release ${{ env.NEW_VERSION }}"
-          git push origin ${{ env.NEW_VERSION }}
-
-      - name: Create ZIP file
+      - name: Package release ZIP
         run: |
           cp LICENSE dist/
-          cd dist
-          zip -r ../${{ env.ZIP_NAME }} *
-          cd ..
+          (cd dist && zip -r "../${{ steps.meta.outputs.zip_name }}" .)
 
-      - name: Publish
-        id: create_release
+      - name: Upload release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-bundle
+          path: |
+            ${{ steps.meta.outputs.zip_name }}
+            release.md
+          if-no-files-found: error
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy-pages:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5.0.1
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Download release artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release-bundle
+
+      - name: Create and push tag
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git tag -a "${{ needs.build.outputs.new_version }}" -m "Release ${{ needs.build.outputs.new_version }}"
+          git push origin "${{ needs.build.outputs.new_version }}"
+
+      - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ env.NEW_VERSION }}
-          files: ${{ env.ZIP_NAME }}
-          body_path: './release.md'
+          tag_name: ${{ needs.build.outputs.new_version }}
+          files: ${{ needs.build.outputs.zip_name }}
+          body_path: release.md
           draft: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
