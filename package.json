@@ -1,43 +1,44 @@
 {
-  "name": "raid_calculator",
-  "version": "1.0.11",
-  "description": "This is the simple Raid disk space calculator",
-  "private": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vite",
-    "start": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "lint": "eslint . --fix",
-    "lint:check": "eslint ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alirashidnahal/raid_calculator.git"
-  },
-  "keywords": [
-    "Raid",
-    "Raid Calculator",
-    "HDD",
-    "Hard Disk"
-  ],
-  "author": "Ali Rashidnahal",
-  "license": "ISC",
-  "type": "module",
-  "bugs": {
-    "url": "https://github.com/alirashidnahal/raid_calculator/issues"
-  },
-  "homepage": "https://github.com/alirashidnahal/raid_calculator#readme",
-  "devDependencies": {
-    "eslint": "^10.12.0",
-    "prettier": "^3.9.10",
-    "vite": "^6.3.5"
-  },
-  "dependencies": {
-    "bootstrap": "^5.3.8",
-    "vazirmatn": "^33.0.3"
-  }
+    "name": "raid_calculator",
+    "version": "2.0.11",
+    "description": "This is the simple Raid disk space calculator",
+    "private": true,
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "vite",
+        "start": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "lint": "eslint . --fix",
+        "lint:check": "eslint ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/alirashidnahal/raid_calculator.git"
+    },
+    "keywords": [
+        "Raid",
+        "Raid Calculator",
+        "HDD",
+        "Hard Disk"
+    ],
+    "author": "Ali Rashidnahal",
+    "license": "ISC",
+    "type": "module",
+    "bugs": {
+        "url": "https://github.com/alirashidnahal/raid_calculator/issues"
+    },
+    "homepage": "https://github.com/alirashidnahal/raid_calculator#readme",
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "eslint": "^10.12.0",
+        "prettier": "^3.9.10",
+        "vite": "^6.3.5"
+    },
+    "dependencies": {
+        "bootstrap": "^5.3.8",
+        "vazirmatn": "^33.0.3"
+    }
 }
