@@ -8,7 +8,11 @@
     "dev": "vite",
     "start": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint . --fix",
+    "lint:check": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -28,6 +32,8 @@
   },
   "homepage": "https://github.com/alirashidnahal/raid_calculator#readme",
   "devDependencies": {
+    "eslint": "^10.12.0",
+    "prettier": "^3.9.10",
     "vite": "^6.3.5"
   },
   "dependencies": {
