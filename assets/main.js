@@ -113,7 +113,7 @@ function enableRaid(el) {
     el.removeAttribute('disabled');
 }
 
-function disableRaid(el) {
+function disableRaid() {
     for (let i = 0; i < raidOptions.length; i++) {
         raidOptions[i].parentNode.classList.add('inactive');
         raidOptions[i].setAttribute('disabled', 'disabled');
