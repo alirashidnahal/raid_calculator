@@ -1,5 +1,4 @@
 @charset "utf-8";
-@import "vendor/vazirmatn/Vazirmatn-font-face.css";
 
 * {
     font-family: Vazirmatn, serif;
@@ -127,9 +126,3 @@ section {
 .availableSpace span.text {
     padding: 0 20px;
 }
-
-
-
-
-
-
