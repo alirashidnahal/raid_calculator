@@ -17,6 +17,18 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
       - name: Get Commit Messages
         id: get_commits
         run: |
@@ -53,16 +65,8 @@ jobs:
 
       - name: Create ZIP file
         run: |
-          mkdir -p release
-          cp -r assets release/
-          cp favicon.ico release/
-          cp icon.png release/
-          cp icon.svg release/
-          cp index.html release/
-          cp LICENSE release/
-          cp robots.txt release/
-          cp site.webmanifest release/
-          cd release
+          cp LICENSE dist/
+          cd dist
           zip -r ../${{ env.ZIP_NAME }} *
           cd ..
 
