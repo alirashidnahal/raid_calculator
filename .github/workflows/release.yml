@@ -78,7 +78,7 @@ jobs:
           (cd dist && zip -r "../${{ steps.meta.outputs.zip_name }}" .)
 
       - name: Upload release artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: release-bundle
           path: |
@@ -87,7 +87,7 @@ jobs:
           if-no-files-found: error
 
       - name: Upload site dist
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: site-dist
           path: dist
