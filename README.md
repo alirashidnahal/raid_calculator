@@ -57,11 +57,11 @@ This project is a planning tool: it estimates usable space for a given layout. I
 ## Supported RAID levels
 
 | Level   | Common name          | Minimum disks (calculator) | Notes                                                                  |
-|---------|----------------------|----------------------------|------------------------------------------------------------------------|
+| ------- | -------------------- | -------------------------- | ---------------------------------------------------------------------- |
 | RAID 0  | Stripe               | 1 (typically 2+)           | Highest efficiency, no redundancy. Any drive failure loses the array.  |
 | RAID 1  | Mirror               | **Exactly 2**              | Full copy on a second drive. Fast reads, slower writes, 100% overhead. |
-| RAID 5  | Striping with parity | 3                          | Survives one drive failure. Capacity of *n − 1* drives.                |
-| RAID 6  | Double parity        | 4                          | Survives two drive failures. Capacity of *n − 2* drives.               |
+| RAID 5  | Striping with parity | 3                          | Survives one drive failure. Capacity of _n − 1_ drives.                |
+| RAID 6  | Double parity        | 4                          | Survives two drive failures. Capacity of _n − 2_ drives.               |
 | RAID 10 | Mirror + stripe      | 4, **even** count          | Striped mirrors. Strong performance and fault tolerance; 50% overhead. |
 | RAID 50 | RAID 5 + stripe      | 6                          | Two striped RAID 5 groups (as implemented here).                       |
 | RAID 60 | RAID 6 + stripe      | 8                          | Two striped RAID 6 groups (as implemented here).                       |
@@ -87,7 +87,7 @@ Drive count gates which radio buttons stay active. For example, RAID 10 needs an
 Let `n` = number of disks and `s` = size of each drive (TB). Raw capacity is always `n × s`.
 
 | RAID | Usable capacity (when valid) |
-|------|------------------------------|
+| ---- | ---------------------------- |
 | 0    | `n × s`                      |
 | 1    | `s` (only when `n === 2`)    |
 | 5    | `(n − 1) × s`                |
@@ -105,7 +105,7 @@ Results are intended for planning. Real arrays also lose space to filesystem met
 ## Tech stack
 
 | Area       | Choice                                                           |
-|------------|------------------------------------------------------------------|
+| ---------- | ---------------------------------------------------------------- |
 | Language   | Vanilla JavaScript (ES modules)                                  |
 | Markup     | HTML5 (`index.html`, `lang="fa"`, `dir="rtl"`)                   |
 | Styling    | Custom CSS + [Bootstrap 5](https://getbootstrap.com/) RTL        |
@@ -154,7 +154,7 @@ GitHub Releases ship a ZIP of `dist/` plus `LICENSE` when the publish workflow r
 ## Available scripts
 
 | Script           | Command                      | Purpose                              |
-|------------------|------------------------------|--------------------------------------|
+| ---------------- | ---------------------------- | ------------------------------------ |
 | Dev server       | `npm run dev` or `npm start` | Vite HMR development server          |
 | Production build | `npm run build`              | Output to `dist/`                    |
 | Preview build    | `npm run preview`            | Serve `dist/`                        |
@@ -221,8 +221,8 @@ Contributions are welcome.
 
 1. Search [existing issues](https://github.com/alirashidnahal/raid_calculator/issues) before opening a new one.
 2. Use the templates:
-   - [Bug report](https://github.com/alirashidnahal/raid_calculator/issues/new?template=bug_report.yml)
-   - [Feature request](https://github.com/alirashidnahal/raid_calculator/issues/new?template=feature_request.yml)
+    - [Bug report](https://github.com/alirashidnahal/raid_calculator/issues/new?template=bug_report.yml)
+    - [Feature request](https://github.com/alirashidnahal/raid_calculator/issues/new?template=feature_request.yml)
 3. Questions can go to [Discussions](https://github.com/alirashidnahal/raid_calculator/discussions).
 4. Open a pull request against the appropriate branch. Follow the [PR template](.github/PULL_REQUEST_TEMPLATE.md): describe the change type, keep style consistent (`npm run format` / `npm run lint`), and update docs when behavior changes.
 
